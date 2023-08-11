@@ -20,10 +20,10 @@ Accept: application/json
 GET  {{urlhost}}/?module=account&action=txlist&address={{walletAddress}}&startblock=0&endblock=1000000&page=1&offset=10000&sort=desc&apikey={{apiKey}} HTTP/1.1
 
 ### TESTING GET WALLET
-GET http://localhost:4000/wallet HTTP/1.1
+GET http://localhost:3002/wallet HTTP/1.1
 
 ### ADD WALLET
-POST http://localhost:4000/wallet HTTP/1.1
+POST http://localhost:3002/wallet HTTP/1.1
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ### SET FAVOURITE WALLET
-PUT http://localhost:4000/wallet/favorites HTTP/1.1
+PUT http://localhost:3002/wallet/favorites HTTP/1.1
 Content-Type: application/json
 
 {
@@ -40,23 +40,23 @@ Content-Type: application/json
 }
 
 ### GET FAVOURITE WALLETS
-GET http://localhost:4000/wallet/favorites HTTP/1.1
+GET http://localhost:3002/wallet/favorites HTTP/1.1
 
 ### GET WALLETS ORDER BY FAVORITE
-GET http://localhost:4000/wallet/sort-favorites?order=asc HTTP/1.1
+GET http://localhost:3002/wallet/sort-favorites?order=asc HTTP/1.1
 
 ### GET WALLET BALANCE IN A SPECIFIC CURRENCY
 @wallet = 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
 @currency3 = USD
-GET http://localhost:4000/wallet/{{wallet}}/balance/{{currency3}} HTTP/1.1
+GET http://localhost:3002/wallet/{{wallet}}/balance/{{currency3}} HTTP/1.1
 
 ### GET EXCHANGE RATES
-GET http://localhost:4000/exchange/rates HTTP/1.1
+GET http://localhost:3002/exchange/rates HTTP/1.1
 
 ### PUT EXCHANGE RATES
 @currency = usdToEth
 @rate = 1
 @currency2 = euroToEth
 @rate2 = 1
-PUT http://localhost:4000/exchange/update-rate/{{currency}}/{{rate}} HTTP/1.1
+PUT http://localhost:3002/exchange/update-rate/{{currency}}/{{rate}} HTTP/1.1
 
