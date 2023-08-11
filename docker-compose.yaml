@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  db:
+    image: mongo:5
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: digital-wallet-dashboard
+    volumes:
+      - ./mongo:/data/db

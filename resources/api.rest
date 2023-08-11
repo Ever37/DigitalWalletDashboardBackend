@@ -1,0 +1,62 @@
+@urlhost = https://api.etherscan.io/api
+
+### SINGLE BALANCE ACCOUNT 
+@walletAddress = 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
+@apiKey = NSZCD6S4TKVWRS13PMQFMVTNP6H7NAGHUY
+GET  {{urlhost}}/?module=account&action=balance&address={{walletAddress}}&tag=latest&apikey={{apiKey}} HTTP/1.1
+Accept: application/json
+
+
+### MULTIPLE BALANCE ACCOUNT
+@walletAddresses = 0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a,0x63a9975ba31b0b9626b34300f7f627147df1f526,0x198ef1ec325a96cc354c7266a038be8b5c558f67,0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
+@apiKey = NSZCD6S4TKVWRS13PMQFMVTNP6H7NAGHUY
+GET  {{urlhost}}/?module=account&action=balancemulti&address={{walletAddresses}}&tag=latest&apikey={{apiKey}} HTTP/1.1
+Accept: application/json
+
+
+### NORMAL TRX BY ADDRESS
+@walletAddress = 0x198ef1ec325a96cc354c7266a038be8b5c558f67
+@apiKey = NSZCD6S4TKVWRS13PMQFMVTNP6H7NAGHUY
+GET  {{urlhost}}/?module=account&action=txlist&address={{walletAddress}}&startblock=0&endblock=1000000&page=1&offset=10000&sort=desc&apikey={{apiKey}} HTTP/1.1
+
+### TESTING GET WALLET
+GET http://localhost:4000/wallet HTTP/1.1
+
+### ADD WALLET
+POST http://localhost:4000/wallet HTTP/1.1
+Content-Type: application/json
+
+{
+  "address": "0x63a9975ba31b0b9626b34300f7f627147df1f526"
+}
+
+### SET FAVOURITE WALLET
+PUT http://localhost:4000/wallet/favorites HTTP/1.1
+Content-Type: application/json
+
+{
+  "address": "0x63a9975ba31b0b9626b34300f7f627147df1f526",
+  "isFavorite": false
+}
+
+### GET FAVOURITE WALLETS
+GET http://localhost:4000/wallet/favorites HTTP/1.1
+
+### GET WALLETS ORDER BY FAVORITE
+GET http://localhost:4000/wallet/sort-favorites?order=asc HTTP/1.1
+
+### GET WALLET BALANCE IN A SPECIFIC CURRENCY
+@wallet = 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
+@currency3 = USD
+GET http://localhost:4000/wallet/{{wallet}}/balance/{{currency3}} HTTP/1.1
+
+### GET EXCHANGE RATES
+GET http://localhost:4000/exchange/rates HTTP/1.1
+
+### PUT EXCHANGE RATES
+@currency = usdToEth
+@rate = 1
+@currency2 = euroToEth
+@rate2 = 1
+PUT http://localhost:4000/exchange/update-rate/{{currency}}/{{rate}} HTTP/1.1
+
